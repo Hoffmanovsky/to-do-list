@@ -2,7 +2,6 @@ let todoInput;
 let errorInfo;
 let addBtn;
 let ulList;
-let newTodo;
 
 const main = () => {
   prepareDOMElements();
@@ -22,10 +21,13 @@ const prepareDOMEvents = () => {
 
 const addNewTodo = () => {
   if (todoInput.value !== '') {
-    newTodo = document.createElement('li');
+    const newTodo = document.createElement('li');
     newTodo.textContent = todoInput.value;
-    createToolsArea();
+
+    createToolsArea(newTodo);
+
     ulList.appendChild(newTodo);
+
     todoInput.value = '';
     errorInfo.textContent = '';
   } else {
@@ -33,7 +35,7 @@ const addNewTodo = () => {
   }
 };
 
-const createToolsArea = () => {
+const createToolsArea = newTodo => {
   const toolsPanel = document.createElement('div');
   toolsPanel.classList.add('tools');
   newTodo.append(toolsPanel);
